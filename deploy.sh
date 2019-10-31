@@ -16,7 +16,7 @@
 		git pull
 		git checkout master
 		echo "changing permissions..."
-		chown -R $WEB_USER:$WEB_USERGROUP $WEB_PATH/deploy.sh
+		chmod -R 7777 $WEB_PATH/deploy.sh
 		echo "Finished."
         
 		# echo "start clear cache..."
