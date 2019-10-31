@@ -15,11 +15,11 @@ return [
     // 服务器地址
     'hostname'        => 'localhost',
     // 数据库名
-    'database'        => 'lin-test',
+    'database'        => 'fan-php-admin',
     // 用户名
-    'username'        => 'root',
+    'username'        => 'faner',
     // 密码
-    'password'        => 'root',
+    'password'        => 'fan123123',
     // 端口
     'hostport'        => '',
     // 连接dsn
