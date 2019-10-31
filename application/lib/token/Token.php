@@ -45,7 +45,7 @@ class Token
     {
         $key = config('secure.token_salt');
         $payload = [
-            'iss' => 'lin-cms-tp5', //签发者
+            'iss' => 'lin-system-tp5', //签发者
             'iat' => time(), //什么时候签发的
             'exp' => time() + 7200, //过期时间
             'user' => $user,
@@ -59,7 +59,7 @@ class Token
     {
         $key = config('secure.token_salt');
         $payload = [
-            'iss' => 'lin-cms-tp5', //签发者
+            'iss' => 'lin-system-tp5', //签发者
             'iat' => time(), //什么时候签发的
             'user' => $user,
         ];
@@ -97,7 +97,7 @@ class Token
      */
     public static function getCurrentName()
     {
-        $uid = self::getCurrentTokenVar('nickname');
+        $uid = self::getCurrentTokenVar('username');
         return $uid;
     }
 

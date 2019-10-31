@@ -5,7 +5,7 @@
  * Date: 2019/9/5
  * Time: 17:42
  */
-
+// 使用stdClass的方式可以节省内存开销 它没有成员变量，也没有成员方法的一个类
 class Controller extends \stdClass
 {
     /**

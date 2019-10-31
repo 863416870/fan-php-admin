@@ -1,5 +1,5 @@
 <?php
-namespace app\api\model\cms;
+namespace app\api\model\system;
 
 use think\Model;
 use app\lib\exception\user\UserException;
@@ -10,7 +10,7 @@ class User extends Model
 {
     use SoftDelete;
 
-    protected $table = 'lin_user';
+    protected $table = 'system_user';
     protected $deleteTime = 'delete_time';
     protected $autoWriteTimestamp = 'datetime';
     protected $hidden = ['delete_time', 'update_time'];
@@ -24,7 +24,7 @@ class User extends Model
      */
     public static function createUser($params)
     {
-        $user = self::where('nickname', $params['nickname'])->find();
+        $user = self::where('username', $params['username'])->find();
         if ($user) {
             throw new UserException([
                 'msg' => '用户名重复，请重新输入',
@@ -147,15 +147,15 @@ class User extends Model
     }
 
     /**
-     * @param $nickname
+     * @param $username
      * @param $password
      * @return array|\PDOStatement|string|\think\Model
      * @throws UserException
      */
-    public static function verify($nickname, $password)
+    public static function verify($username, $password)
     {
         try {
-            $user = self::where('nickname', $nickname)->findOrFail();
+            $user = self::where('username', $username)->findOrFail();
         } catch (Exception $ex) {
             throw new UserException();
         }

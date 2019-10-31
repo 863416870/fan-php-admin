@@ -61,7 +61,7 @@ class Auth
     {
         // 获取当前请求的控制层
         $controller = $this->request->controller();
-        // 控制层下有二级目录，需要解析下。如controller/cms/Admin，获取到的是Cms.Admin
+        // 控制层下有二级目录，需要解析下。如controller/system/Admin，获取到的是Cms.Admin
         $controllerPath = explode('.', $controller);
         // 获取当前请求的方法
         $action = $this->request->action();

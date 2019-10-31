@@ -6,7 +6,7 @@
  * Time: 15:10
  */
 
-namespace app\api\model\cms;
+namespace app\api\model\system;
 
 
 use think\Model;

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\api\controller\cms;
+namespace app\api\controller\system;
 
 use app\lib\token\Token;
 use app\api\model\cms\User as FUser;
@@ -23,10 +23,10 @@ class User extends Controller
 
         $params = $request->post();
 
-        $user = FUser::verify($params['nickname'], $params['password']);
+        $user = FUser::verify($params['username'], $params['password']);
         $result = Token::getToken($user);
 
-        Hook::listen('logger', array('uid' => $user->id, 'nickname' => $user->nickname, 'msg' => '登陆成功获取了令牌'));
+        Hook::listen('logger', array('uid' => $user->id, 'nickname' => $user->username, 'msg' => '登陆成功获取了令牌'));
         return $result;
     }
 

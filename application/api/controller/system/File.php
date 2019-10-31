@@ -5,7 +5,7 @@
 *Time: 16:26
 */
 
-namespace app\api\controller\cms;
+namespace app\api\controller\system;
 
 use think\facade\Request;
 use think\Controller;
@@ -14,7 +14,7 @@ use app\lib\exception\file\FileException;
 
 /**
  * Class File
- * @package app\api\controller\cms
+ * @package app\api\controller\system
  */
 class File extends Controller
 {
