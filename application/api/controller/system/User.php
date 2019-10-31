@@ -3,7 +3,7 @@
 namespace app\api\controller\system;
 
 use app\lib\token\Token;
-use app\api\model\cms\User as FUser;
+use app\api\model\system\User as FUser;
 use think\App;
 use think\Controller;
 use think\facade\Hook;
