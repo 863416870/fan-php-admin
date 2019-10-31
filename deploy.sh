@@ -24,6 +24,6 @@
 		# echo "clear cache end."
 		
 		
-        echo "start chown"
-		chown -R $WEB_USER:$WEB_USERGROUP $WEB_PATH
-        echo "chown end."
+  #       echo "start chown"
+		# chown -R $WEB_USER:$WEB_USERGROUP $WEB_PATH
+  #       echo "chown end."
