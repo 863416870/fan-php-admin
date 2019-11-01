@@ -11,9 +11,9 @@
 
 use think\facade\Cache;
 use think\Db;
-use app\common\util\ExceptionUtil;
+use app\lib\exception\parameter\ParameterException;
 use app\common\tools\Data;
-use think\Request;
+use think\facade\Request;
 // 应用公共文件
 
 
@@ -192,6 +192,53 @@ if (!function_exists('format_size')) {
     }
 }
 
+
+
+function split_modules($auths, $key = 'module')
+{
+    if (empty($auths)) {
+        return [];
+    }
+
+    $items = [];
+    $result = [];
+
+    foreach ($auths as $key => $value) {
+        if (isset($items[$value['module']])) {
+            $items[$value['module']][] = $value;
+        } else {
+            $items[$value['module']] = [$value];
+        }
+    }
+    foreach ($items as $key => $value) {
+        $item = [
+            $key => $value
+        ];
+        array_push($result, $item);
+    }
+    return $result;
+
+}
+/**
+ * @param $auth
+ * @return array
+ * @throws ReflectionException
+ */
+function findAuthModule($auth)
+{
+    $authMap = (new AuthMap())->run();
+    foreach ($authMap as $key => $value) {
+        foreach ($value as $k => $v) {
+            if ($auth === $k) {
+                return [
+                    'auth' => $k,
+                    'module' => $key
+                ];
+            }
+        }
+    }
+}
+
 if (!function_exists('paginate')) {
     /**
      * @return array
@@ -203,7 +250,8 @@ if (!function_exists('paginate')) {
         $start = intval(Request::get('page'));
         $count = $count >= 15 ? 15 : $count;
         $start = $start * $count;
-        if ($start < 0 || $count < 0) throw new \app\lib\exception\BaseException(ExceptionUtil::ParameterExceptionMap());
+        if ($start < 0 || $count < 0) throw new ParameterException();
+
         return [$start, $count];
     }
 }

@@ -2,8 +2,11 @@
 namespace app\api\model\system;
 
 use think\Model;
-use app\lib\exception\user\UserException;
 use think\Exception;
+use think\facade\Config;
+use think\facade\Request;
+use app\lib\exception\user\UserException;
+
 
 class User extends Model
 {
@@ -34,9 +37,29 @@ class User extends Model
             ]);
         }
         $params['password'] = md5($params['password']);
-        $params['admin'] = 1;
-        $params['active'] = 1;
         self::create($params);
+    }
+
+    /**
+     * @param $uid
+     * @param $params
+     * @throws UserException
+     */
+    public static function updateUserInfo($uid, $params)
+    {
+        $user = self::find($uid);
+        if (isset($params['email']) && $user['email'] != $params['email']) {
+            $exists = self::where('email', $params['email'])
+                ->field('email')
+                ->find();
+
+            if ($exists) throw  new UserException([
+                'code' => 400,
+                'msg' => '注册邮箱重复，请重新输入',
+                'error_code' => 10030
+            ]);
+        }
+        $user->save($params);
     }
 
     /**
@@ -47,29 +70,47 @@ class User extends Model
     public static function getAdminUsers($params)
     {
         $group = [];
-        if (array_key_exists('group_id', $params)) $group = ['group_id' => $params['group_id']];
+//        if (array_key_exists('group_id', $params)) $group = ['group_id' => $params['group_id']];
 
         list($start, $count) = paginate();
 
         $userList = self::where('admin', '<>', 2)
             ->where($group)
-            ->field('password,create_time,update_time', true);
+            ->field('password,delete_time,update_time', true);
 
         $totalNums = $userList->count();
         $userList = $userList->limit($start, $count)->select();
 
         $userList = array_map(function ($item) {
-            $group = LinGroup::get($item['group_id']);
-            $item['group_name'] = $group['name'];
+//            $group = LinGroup::get($item['group_id']);
+//            $item['group_name'] = $group['name'];
             return $item;
         }, $userList->toArray());
 
         $result = [
-            'collection' => $userList,
-            'total_nums' => $totalNums
+            'items' => $userList,
+            'total' => $totalNums,
+            'count' => Request::get('count/d'),
+            'page' => Request::get('page/d'),
+            'total_page' => ceil($totalNums / Request::get('count'))
         ];
 
         return $result;
+    }
+
+    public static function changePassword($uid, $params)
+    {
+        $user = self::find($uid);
+        if (!self::checkPassword($user->password, $params['old_password'])) {
+            throw new UserException([
+                'code' => 400,
+                'msg' => '原始密码错误，请重新输入',
+                'error_code' => 10030
+            ]);
+        }
+
+        $user->password = md5($params['new_password']);
+        $user->save();
     }
 
     /**
@@ -118,8 +159,9 @@ class User extends Model
         $emailExist = self::where('email', $params['email'])->find();
         if ($emailExist && $params['email'] != $user['email']) {
             throw new UserException([
+                'code' => 400,
                 'msg' => '注册邮箱重复，请重新输入',
-                'error_code' => 20004
+                'error_code' => 10030
             ]);
         }
 
@@ -132,7 +174,8 @@ class User extends Model
      * @param $params [url,uid]
      * @throws UserException
      */
-    public static function updateUserAvatar($uid,$url){
+    public static function updateUserAvatar($uid, $url)
+    {
         $user = User::find($uid);
         if (!$user) {
             throw new UserException();
@@ -150,7 +193,6 @@ class User extends Model
     public static function verify($username, $password)
     {
         try {
-
             $user = self::where('username', $username)->findOrFail();
         } catch (Exception $ex) {
             throw new UserException();
@@ -158,20 +200,21 @@ class User extends Model
 
         if (!$user->status) {
             throw new UserException([
+                'code' => 400,
                 'msg' => '账户已被禁用，请联系管理员',
-                'error_code' => 20003
+                'error_code' => 10070
             ]);
         }
 
         if (!self::checkPassword($user->password, $password)) {
             throw new UserException([
+                'code' => 400,
                 'msg' => '密码错误，请重新输入',
-                'error_code' => 20001
+                'error_code' => 10030
             ]);
         }
 
         return $user->hidden(['password']);
-
     }
 
     /**
@@ -206,5 +249,16 @@ class User extends Model
         return $md5Password === md5($password);
     }
 
+    function getAvatarAttr($value)
+    {
+        $url = $value;
+        if ($value) {
+            $host = Config::get('file.host') ?? "http://127.0.0.1:8000";
+            $storeDir = Config::get('file.store_dir');
+            $url = $host . '/' . $storeDir . '/' . $value;
+        }
+
+        return $url;
+    }
 
 }

@@ -3,7 +3,7 @@
 namespace app\lib\file;
 
 use think\facade\Config;
-use app\common\model\File as CmsFile;
+use app\api\model\system\File as SystemFile;
 use app\lib\exception\file\FileException;
 use app\lib\file\File;
 use think\facade\Env;
@@ -23,7 +23,7 @@ class LocalUploader extends File
         $host = Config::get('file.host') ?? "http://127.0.0.1:8000";
         foreach ($this->files as $key => $file) {
             $md5 = $this->generateMd5($file);
-            $exists = CmsFile::get(['md5' => $md5]);
+            $exists = SystemFile::get(['md5' => $md5]);
             if ($exists) {
                 array_push($ret, [
                     'id' => $exists['id'],
@@ -44,7 +44,7 @@ class LocalUploader extends File
                         'error_code' => 60001
                     ]);
                 }
-                $CmsFile = CmsFile::create([
+                $CmsFile = SystemFile::create([
                     'name' => $name,
                     'path' => $path,
                     'size' => $size,

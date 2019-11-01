@@ -14,6 +14,8 @@ use think\model\concern\SoftDelete;
 
 class File extends Model
 {
+    protected $table = 'system_file';
+
     use SoftDelete;
     protected $autoWriteTimestamp = 'datetime';
     protected $hidden = ['delete_time', 'update_time'];

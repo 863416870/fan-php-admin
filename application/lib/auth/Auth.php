@@ -9,7 +9,7 @@
 namespace app\lib\auth;
 
 use app\lib\token\Token;
-use LinCmsTp5\admin\model\LinUser;
+use app\api\model\system\User as SystemUser;
 use app\lib\exception\token\DeployException;
 
 class Auth
@@ -85,7 +85,7 @@ class Auth
     protected function userAuth()
     {
         $uid = Token::getCurrentUID();
-        $user = LinUser::getUserByUID($uid);
+        $user = SystemUser::getUserByUID($uid);
 
         return $user;
 
