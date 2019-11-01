@@ -13,10 +13,7 @@ use think\Model;
 
 class Log extends Model
 {
-    protected $table = "lin_table";
-    protected $createTime = 'time';
-    protected $updateTime = false;
-    protected $autoWriteTimestamp = 'datetime';
+    protected $table = "system_log";
 
     /**
      * @param $params

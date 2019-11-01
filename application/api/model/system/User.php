@@ -4,16 +4,11 @@ namespace app\api\model\system;
 use think\Model;
 use app\lib\exception\user\UserException;
 use think\Exception;
-use think\model\concern\SoftDelete;
 
 class User extends Model
 {
-    use SoftDelete;
 
     protected $table = 'system_user';
-    protected $deleteTime = 'delete_time';
-    protected $autoWriteTimestamp = 'datetime';
-    protected $hidden = ['delete_time', 'update_time'];
 
     /**
      * @param $params
@@ -58,7 +53,7 @@ class User extends Model
 
         $userList = self::where('admin', '<>', 2)
             ->where($group)
-            ->field('password,delete_time,update_time', true);
+            ->field('password,create_time,update_time', true);
 
         $totalNums = $userList->count();
         $userList = $userList->limit($start, $count)->select();
@@ -155,12 +150,13 @@ class User extends Model
     public static function verify($username, $password)
     {
         try {
+
             $user = self::where('username', $username)->findOrFail();
         } catch (Exception $ex) {
             throw new UserException();
         }
 
-        if (!$user->active) {
+        if (!$user->status) {
             throw new UserException([
                 'msg' => '账户已被禁用，请联系管理员',
                 'error_code' => 20003

@@ -3,7 +3,7 @@
 namespace app\api\controller\system;
 
 use app\lib\token\Token;
-use app\api\model\system\User as FUser;
+use app\api\model\system\User as SystemUser;
 use think\App;
 use think\Controller;
 use think\facade\Hook;
@@ -23,7 +23,7 @@ class User extends Controller
 
         $params = $request->post();
 
-        $user = FUser::verify($params['username'], $params['password']);
+        $user = SystemUser::verify($params['username'], $params['password']);
         $result = Token::getToken($user);
 
         Hook::listen('logger', array('uid' => $user->id, 'nickname' => $user->username, 'msg' => '登陆成功获取了令牌'));

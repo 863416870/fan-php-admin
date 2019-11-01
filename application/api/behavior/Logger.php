@@ -1,7 +1,6 @@
 <?php
 namespace app\api\behavior;
 
-
 use app\lib\token\Token;
 use app\lib\exception\logger\LoggerException;
 use app\common\model\Log as FLog;

@@ -10,7 +10,7 @@ namespace app\lib\token;
 
 use app\lib\exception\token\TokenException;
 use Firebase\JWT\JWT;
-use app\api\model\cms\User as FUser;
+use app\api\model\system\User as FUser;
 use think\Exception;
 use think\facade\Request;
 
@@ -114,7 +114,7 @@ class Token
         if (!$authorization) {
             throw new TokenException(['msg' => '请求未携带authorization信息']);
         }
-
+//        halt(explode(' ', $authorization));
         list($type, $token) = explode(' ', $authorization);
 
         if ($type !== 'Bearer') throw new TokenException(['msg' => '接口认证方式需为Bearer']);
