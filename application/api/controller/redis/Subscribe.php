@@ -23,7 +23,7 @@ class Subscribe
 
 
         $redis = new RedisBase();
-        $redis->setOption();
+        $redis->setOption(\Redis::OPT_READ_TIMEOUT, -1);
 
         $redis->psubscribe(array('__keyevent@0__:expired'), function ($redis, $pattern, $chan, $msg) {
             //逻辑处理
