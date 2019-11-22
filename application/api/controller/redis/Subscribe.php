@@ -8,7 +8,7 @@
 namespace app\api\controller\redis;
 
 use app\lib\redis\Base as RedisBase;
-use think\facade\Log;
+use think\Log;
 
 //use app\common\tools\Log;
 
