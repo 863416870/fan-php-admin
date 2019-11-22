@@ -7,19 +7,18 @@
  */
 namespace app\common\command;
 
-use app\index\service\RedisSubscribe;
+use app\api\controller\redis\Subscribe as RedisSubscribe;
 use think\console\Command;
 use think\console\Input;
 use think\console\input\Argument;
 use think\console\Output;
-use app\common\tools\redis\RedisBase;
 
-class Order extends Command
+class Redis extends Command
 {
-    // 配置指令  php think order psubscribe & 后台挂起进程
+    // 配置指令  php think redis psubscribe & 后台挂起进程
     public function configure()
     {
-        $this->setName('order')
+        $this->setName('redis')
             ->addArgument('type', Argument::REQUIRED, "the type of the task that pay needs to run")
             ->setDescription('this is payment system command line tools');
     }
@@ -30,13 +29,8 @@ class Order extends Command
         $type = $input->getArgument('type');
         if ($type == 'psubscribe') {
             // 发布订阅任务
-            $this->redisSetEx();
             $this->psubscribe();
         }
-    }
-    public function redisSetEx(){
-        $redis = new RedisBase();
-        $redis->setex("jue",5,111);
     }
     /**
      * Redis 发布订阅模式

@@ -21,7 +21,8 @@
         "topthink/think-migration": "2.*",
         "aliyuncs/oss-sdk-php": "^2.3",
         "qiniu/php-sdk": "^7.2",
-        "firebase/php-jwt": "^5.0"
+        "firebase/php-jwt": "^5.0",
+        "aliyun/aliyun-mns-php-sdk": ">=1.0.0"
     },
     "autoload": {
         "psr-4": {

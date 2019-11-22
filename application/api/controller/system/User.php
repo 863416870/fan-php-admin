@@ -47,7 +47,6 @@ class User extends Controller
      * @validate('ChangePasswordForm')
      * @param Request $request
      * @return \think\response\Json
-     * @throws \LinCmsTp5\admin\exception\user\UserException
      * @throws \app\lib\exception\token\TokenException
      * @throws \think\Exception
      */

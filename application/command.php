@@ -10,5 +10,5 @@
 // +----------------------------------------------------------------------
 
 return [
-    'app\common\command\Order',
+    'app\common\command\Redis',
 ];

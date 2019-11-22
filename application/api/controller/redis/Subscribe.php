@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2019/9/9
- * Time: 14:50
+ * Date: 2019/11/22
+ * Time: 14:42
  */
-namespace app\index\service;
+namespace app\api\controller\redis;
 
-use app\common\tools\redis\RedisBase;
+use app\lib\redis\Base as RedisBase;
 use app\common\tools\Log;
 
-class RedisSubscribe
+class Subscribe
 {
     public function sub()
     {

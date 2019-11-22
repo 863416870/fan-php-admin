@@ -39,7 +39,7 @@ class Admin
      * @auth('修改用户密码','管理员','hidden')
      * @param Request $request
      * @return \think\response\Json
-     * @throws \LinCmsTp5\admin\exception\user\UserException
+     * @throws \app\lib\exception\user\UserException
      */
     public function changeUserPassword(Request $request)
     {
@@ -53,7 +53,7 @@ class Admin
      * @auth('删除用户','管理员','hidden')
      * @param $uid
      * @return \think\response\Json
-     * @throws \think\Exception
+     * @throws \app\lib\exception\user\UserException
      */
     public function deleteUser($uid)
     {
@@ -62,14 +62,15 @@ class Admin
         return writeJson(201, '', '操作成功');
     }
 
+
     /**
      * @auth('管理员更新用户信息','管理员','hidden')
      * @param Request $request
      * @return \think\response\Json
+     * @throws \app\lib\exception\user\UserException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * @throws \LinCmsTp5\admin\exception\user\UserException
      */
     public function updateUser(Request $request)
     {
@@ -83,6 +84,7 @@ class Admin
      * @auth('查询所有权限组','管理员','hidden')
      * @return mixed
      */
+
     public function getGroupAll()
     {
         $result = SystemRole::all();
@@ -94,10 +96,10 @@ class Admin
      * @auth('查询一个权限组及其权限','管理员','hidden')
      * @param $id
      * @return array|\PDOStatement|string|\think\Model
+     * @throws RoleException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * @throws RoleException
      */
     public function getRole($id)
     {
