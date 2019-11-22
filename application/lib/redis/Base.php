@@ -7,7 +7,7 @@
  */
 
 namespace app\lib\redis;
-use think\Log;
+use think\facade\Log;
 
 class Base
 {

@@ -10,7 +10,7 @@ use think\console\Command;
 use think\console\Input;
 use think\console\Output;
 use think\Db;
-use think\Log;
+use think\facade\Log;
 class Test extends Command
 {
 
