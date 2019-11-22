@@ -10,5 +10,5 @@
 // +----------------------------------------------------------------------
 
 return [
-    'app\common\command\Redis',
+    "redis" => 'app\common\command\Redis',
 ];
