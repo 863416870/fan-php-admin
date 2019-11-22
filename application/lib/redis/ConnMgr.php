@@ -81,7 +81,7 @@ class ConnMgr
             //默认业务redis，线上线下隔离
             "default" => array(
                 "host" => "47.93.119.95",
-                "port" => "3306",
+                "port" => "6379",
                 "connect_timeout" => "1.5",
                 "connect_retry_delay" => '100', //毫秒
                 "connect_retry_times" => 3,
