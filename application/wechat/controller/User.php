@@ -22,7 +22,7 @@ class User extends Controller
 
         $params = $request->post();
 
-        Log::write("code".$params);
+        Log::write("code".json_encode($params));
     }
 
 
