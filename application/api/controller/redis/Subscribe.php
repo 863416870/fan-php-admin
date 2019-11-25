@@ -10,12 +10,8 @@ namespace app\api\controller\redis;
 use app\lib\redis\Base as RedisBase;
 use think\facade\Log;
 
-//use app\common\tools\Log;
-
-
 class Subscribe
 {
-
 
     public function sub()
     {

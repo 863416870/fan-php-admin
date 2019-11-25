@@ -78,5 +78,8 @@ Route::group('', function () {
         // 删除图书
         Route::delete('book/:bid', 'api/v1.Book/delete');
     });
+    Route::group("wechat",function (){
+        Route::post('userlogin/', 'wechat/User/login');
+    });
 })->middleware([])->allowCrossDomain();
 
