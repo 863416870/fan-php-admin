@@ -10,7 +10,7 @@ use app\common\tools\Node;
 use app\common\util\ExceptionUtil;
 use Finecho\Logistics\Logistics;
 use think\facade\Hook;
-use library\Controller;
+use think\Controller;
 
 class Index extends Controller
 {
