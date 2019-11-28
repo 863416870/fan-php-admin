@@ -44,7 +44,8 @@ class User extends Controller
     {
 
         $params = $request->post();
-        $info = $this->Crypt->session($params['code']);
+        Log::write("code".json_encode($params));
+        $info = $this->Crypt->session("081IQVX620OxPQ0DQUW62ZBPX62IQVXH");
         Log::write("code".json_encode($info));
     }
 
