@@ -79,7 +79,7 @@ Route::group('', function () {
         Route::delete('book/:bid', 'api/v1.Book/delete');
     });
     Route::group("wechat",function (){
-        Route::get('userlogin/', 'wechat/User/login');
+        Route::get('userlogin', 'wechat/User/login');
     });
 })->middleware([])->allowCrossDomain();
 
