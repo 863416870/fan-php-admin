@@ -43,7 +43,7 @@ class User extends Controller
     public function login(Request $request)
     {
 
-        $params = $request->post();
+        $params = $request->get();
         Log::write("code".json_encode($params));
         $info = $this->Crypt->session($params['code']);
         Log::write("code".json_encode($info));
