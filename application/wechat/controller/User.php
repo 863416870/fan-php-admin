@@ -37,7 +37,7 @@ class User extends Controller
             // 缓存目录配置（可选，需拥有读写权限）
             'cache_path'     => '',
         ];
-        $this->Crypt = new \WeMini\Crypt($config);
+        $this->Crypt = new \app\wechat\lib\WeMini\Crypt($config);
     }
 
     public function login(Request $request)
