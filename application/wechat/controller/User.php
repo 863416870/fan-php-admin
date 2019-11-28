@@ -25,8 +25,8 @@ class User extends Controller
 //        const APP_SECRET = "a1b9bc964d69111742d36e96b46093e2";
         $config = [
             'token'          => 'test',
-            'appid'          => 'wx5c418a3419f75d9d',
-            'appsecret'      => 'a1b9bc964d69111742d36e96b46093e2',
+            'appid'          => 'wx6e9b1cf5d85e0f3c',
+            'appsecret'      => '40d531b0b5e1fbb0cb6d5b052a192ace',
             'encodingaeskey' => 'BJIUzE0gqlWy0GxfPp4J1oPTBmOrNDIGPNav1YFH5Z5',
             // 配置商户支付参数（可选，在使用支付功能时需要）
             'mch_id'         => "1235704602",
