@@ -47,6 +47,7 @@ class User extends Controller
         Log::write("code".json_encode($params));
         $info = $this->Crypt->session($params['code']);
         Log::write("code".json_encode($info));
+        return writeJson(201, $info, '成功');
     }
 
 
