@@ -330,7 +330,7 @@ class Tools
      * @param array $data 需要处理的数据
      * @param boolean $build 是否编译数据
      * @return array|string
-     * @throws \WeChat\Exceptions\LocalCacheException
+     * @throws LocalCacheException
      */
     private static function _buildHttpData($data, $build = true)
     {
