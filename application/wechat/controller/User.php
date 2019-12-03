@@ -34,6 +34,7 @@ class User extends Controller
         $this->Crypt = new \app\wechat\lib\WeMini\Crypt($config);
     }
 
+
     /**
      * 账户登陆
      * @param Request $request
@@ -55,11 +56,8 @@ class User extends Controller
     }
 
 
-//    public function getUserInfo(Request $request){
-//        $params = $request->get();
-//        $info = $this->Crypt->userInfo("071Opbeu0FAUTi1Tazcu0gG4eu0Opbe-","");
-//        return writeJson(201, $info, '成功');
-//    }
+
+
 
 
 }
