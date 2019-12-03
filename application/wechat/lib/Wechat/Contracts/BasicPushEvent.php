@@ -6,6 +6,7 @@ namespace app\wechat\lib\WeChat\Contracts;
 use app\wechat\lib\WeChat\Exceptions\InvalidArgumentException;
 use app\wechat\lib\WeChat\Exceptions\InvalidDecryptException;
 use app\wechat\lib\WeChat\Exceptions\InvalidResponseException;
+use think\facade\Log;
 
 /**
  * 微信通知处理基本类
@@ -75,6 +76,8 @@ class BasicPushEvent
         // 参数初始化
         $this->config = new DataArray($options);
         $this->input = new DataArray($_REQUEST);
+        Log::write("config".json_encode($this->config));
+        Log::write("input".json_encode($this->input));
         $this->appid = $this->config->get('appid');
         // 推送消息处理
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
