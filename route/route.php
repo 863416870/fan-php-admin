@@ -81,6 +81,7 @@ Route::group('', function () {
     Route::group("wechat",function (){
         Route::get('userlogin', 'wechat/User/login');
         Route::get('push', 'wechat/Push/index');
+        Route::get('login', 'wechat/Push/login');
     });
 })->middleware([])->allowCrossDomain();
 

@@ -29,5 +29,9 @@ class Push extends Controller
         return writeJson(201, [], '成功');
     }
 
+    public function login(){
+
+        return writeJson(201, [], '成功');
+    }
 
 }
