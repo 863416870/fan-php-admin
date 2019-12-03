@@ -26,6 +26,7 @@ class Push extends Controller
 
     public function index(){
         new BasicPushEvent($this->config);
+        return writeJson(201, [], '成功');
     }
 
 
