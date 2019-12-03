@@ -25,8 +25,24 @@ class Push extends Controller
     }
 
     public function index(){
-        new BasicPushEvent($this->config);
-        return writeJson(201, [], '成功');
+
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+
+        $token = "7d50ceef1198b6e5ee8b1d40a6ba48e6";
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+
+        if( $tmpStr == $signature ){
+            return true;
+        }else{
+            return false;
+        }
+//        new BasicPushEvent($this->config);
+//        return writeJson(201, [], '成功');
     }
 
     public function login(){
