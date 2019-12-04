@@ -1,6 +1,6 @@
 <?php
 
-namespace app\wechat\controller\api;
+namespace app\wechat\controller;
 
 use think\Controller;
 use app\wechat\lib\WeChat\Contracts\BasicPushEvent;
