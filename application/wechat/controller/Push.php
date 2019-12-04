@@ -1,6 +1,6 @@
 <?php
 
-namespace app\wechat\controller;
+namespace app\wechat\controller\api;
 
 use think\Controller;
 use app\wechat\lib\WeChat\Contracts\BasicPushEvent;
@@ -25,22 +25,23 @@ class Push extends Controller
     }
 
     public function index(){
-
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-
-        $token = "7d50ceef1198b6e5ee8b1d40a6ba48e6";
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode( $tmpArr );
-        $tmpStr = sha1( $tmpStr );
-
-        if( $tmpStr == $signature ){
-            return true;
+        $timestamp = $_GET['timestamp'];
+        $nonce     = $_GET['nonce'];
+        $token     = 'fanguojie2';
+        $signature = $_GET['signature'];
+        $array     = array($timestamp,$nonce,$token);
+        sort($array);
+        //将排序后的三个参数拼接之后参数拼接之后进行sha1加密
+        $tmpstr    = implode('',$array);
+        $tmpstr    = sha1($tmpstr);
+        //将加密后的字符串与signature进行对比；
+        if($tmpstr == $signature && isset($_GET['echostr'])){
+            echo $_GET['echostr'];
+            exit;
         }else{
-            return false;
+            return writeJson(201, [], '成功');
         }
+
 //        new BasicPushEvent($this->config);
 //        return writeJson(201, [], '成功');
     }
