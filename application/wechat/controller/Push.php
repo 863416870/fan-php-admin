@@ -4,6 +4,7 @@ namespace app\wechat\controller\api;
 
 use think\Controller;
 use app\wechat\lib\WeChat\Contracts\BasicPushEvent;
+use think\facade\Log;
 /**
  * 微信公众号认证与消息推送处理
  * Class Push
@@ -35,7 +36,9 @@ class Push extends Controller
         $tmpstr    = implode('',$array);
         $tmpstr    = sha1($tmpstr);
         //将加密后的字符串与signature进行对比；
+        Log::write("tmpstr------------".$tmpstr);
         if($tmpstr == $signature && isset($_GET['echostr'])){
+            Log::write($_GET['echostr']);
             echo $_GET['echostr'];
             exit;
         }else{
