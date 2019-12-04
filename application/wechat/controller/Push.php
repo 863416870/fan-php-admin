@@ -36,9 +36,9 @@ class Push extends Controller
         $tmpstr    = implode('',$array);
         $tmpstr    = sha1($tmpstr);
         //将加密后的字符串与signature进行对比；
-        Log::write("tmpstr------------".$tmpstr);
+        Log::error("tmpstr------------".$tmpstr);
         if($tmpstr == $signature && isset($_GET['echostr'])){
-            Log::write($_GET['echostr']);
+            Log::error($_GET['echostr']);
             echo $_GET['echostr'];
             exit;
         }else{
