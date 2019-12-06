@@ -7,6 +7,7 @@ use think\Controller;
 use app\wechat\lib\WeChat\Contracts\BasicPushEvent;
 use think\facade\Log;
 use think\facade\Config;
+use app\common\tools\Log as fanLog;
 /**
  * 微信公众号认证与消息推送处理
  * Class Push
@@ -19,6 +20,7 @@ class Push extends Controller
     {
         $this->config = Config::get('wechat.gzh');
         p("[Wechat_Controller_Push]");
+        fanLog::logs("sadddddddddddddddddddddddddddddd");
     }
 
     public function index(){
