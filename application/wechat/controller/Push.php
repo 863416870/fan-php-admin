@@ -17,13 +17,8 @@ class Push extends Controller
     public $config;
     public function __construct()
     {
-//        $this->config = [
-//            'token'          => 'fanguojie2',
-//            'appid'          => 'wxbbbe278acf225756',
-//            'appsecret'      => '05b26dd50b7bf62ba987e484d43ded77',
-//            'encodingaeskey' => 'wbbK5LHIf9BEYXBckjthSaX7PxkMKUiiP6GwdTXWOOW',
-//        ];
         $this->config = Config::get('wechat.gzh');
+        fanLog("[Wechat_Controller_Push]");
     }
 
     public function index(){

@@ -14,6 +14,7 @@ use think\Db;
 use app\lib\exception\parameter\ParameterException;
 use app\common\tools\Data;
 use think\facade\Request;
+use app\common\tools\Log as FanLog;
 // 应用公共文件
 
 
@@ -33,6 +34,29 @@ if (!function_exists('writeJson')) {
             'msg' => $msg
         ];
         return json($data, $code);
+    }
+}
+
+if (!function_exists('fanLog')) {
+
+    /**
+     * 重新定义日志文件
+     * @param $content
+     * @param string $type
+     */
+    function fanLog($content,$type="trace")
+    {
+        switch ($type){
+            case "trace":
+                FanLog::trace($content);
+                break;
+            case "error":
+                FanLog::error($content);
+                break;
+            case "cront":
+                FanLog::cront($content);
+                break;
+        }
     }
 }
 

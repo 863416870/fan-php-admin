@@ -8,7 +8,6 @@
 
 namespace app\common\tools;
 
-
 class Log
 {
     public static function getLogId(){
