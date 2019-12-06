@@ -40,7 +40,7 @@ class Log {
             $arrConfig['sub_dir']   = implode('/', $arrPath);
             $arrConfig['file_name'] = '/' . date('Ymd') . '.log';
             $arrConfig['client_ip'] = "127.0.0.1";
-            $arrConfig['logs_no']   = date('ymdHis') . microtime() * 1000000;
+            $arrConfig['logs_no']   = getLogId();
         }
 
         $filepath = $arrConfig['root_path'];
