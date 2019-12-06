@@ -7,6 +7,7 @@
  */
 
 namespace app\common\tools;
+use think\facade\Log as LLOG;
 
 class Log
 {
@@ -65,6 +66,7 @@ class Log
                 continue;
             }
             $args = count($val['args']) > 0 && $paramsFlag ? "$" . "args=" . str_replace('\n', '', var_export($val['args'], true)) : "";
+            LLOG::write($args);
             $commonFooter .= "#$key ". (isset($val['file']) ? $val['file'] : "[internal function]") . "(" . (isset($val['line']) ? $val['line'] : "") . "):" . $val['class'] . $val['type'] . $val['function'] . "(" . $args . ")" . "\n";
         }
 
