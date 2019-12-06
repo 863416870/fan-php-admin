@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * 小程序拉取openid
+ */
 namespace app\wechat\controller;
 
 
@@ -50,8 +53,6 @@ class User extends Controller
         //换取用户openid与session_key
         $info = $this->Crypt->session($params['code']);
         Log::write("code".json_encode($info));
-        $encryptedData = "ol/v8ShRT7XjZxjpBH4JkAFo4obDaH9rr06JRW7D8x7K5P/M5rHZZE4JeCnG1FnvAymMmqMv3W1Az0LHnisoRV6uNpDXEVwr2KebFgb0xPjcooQtacwrerDvgp6tsYxeHGQjeMVifFI3orAO6d0YLRUp84TiRfJD8M0Oye5D5NXJp2cXfvAL6ksCdzUILwjWqo5s+mWFGi3CxAmziGt7zfTXOitZXyngjylse1LvzYyt0W9cSbXwhyu4GMrFOeU4pO28XHkxsCwIz9BO8J9/s2k/zkAfXBuZBI4Zes5RcuFjeAjjUUQAEU5Fx9hrD/a+LAu8TB6bYJR86yxVZFVmt+NYxnh5b8O/PZK4GbbFF94A9ertDQGG2iaHLxITlAkrjyj0euPXBCOldayGgw7Kkj2F5qegTvRTg96/mVYM7QThArtziD2ldHqE4+YF2flYx84B4xPisc75lN3jUQluAg2PbRpyMc+NZ39zU42VFBU=";
-//        $this->Crypt->decode("HqjBveMO5uPyiNsGOA2rlw==", $info['session_key'], $encryptedData);
         return writeJson(201, $info, '成功');
     }
 
