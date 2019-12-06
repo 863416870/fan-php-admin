@@ -18,7 +18,7 @@ class Push extends Controller
     public function __construct()
     {
         $this->config = Config::get('wechat.gzh');
-        fanLog("[Wechat_Controller_Push]");
+        p("[Wechat_Controller_Push]");
     }
 
     public function index(){

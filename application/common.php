@@ -37,29 +37,6 @@ if (!function_exists('writeJson')) {
     }
 }
 
-if (!function_exists('fanLog')) {
-
-    /**
-     * 重新定义日志文件
-     * @param $content
-     * @param string $type
-     */
-    function fanLog($content,$type="trace")
-    {
-        switch ($type){
-            case "trace":
-                FanLog::trace($content);
-                break;
-            case "error":
-                FanLog::error($content);
-                break;
-            case "cront":
-                FanLog::cront($content);
-                break;
-        }
-    }
-}
-
 if (!function_exists('p')) {
     /**
      * 打印输出数据到文件
@@ -69,7 +46,7 @@ if (!function_exists('p')) {
      */
     function p($data, $force = false, $file = null)
     {
-        is_null($file) && $file = env('runtime_path') . date('Ymd') . '.txt';
+        is_null($file) && $file = env('runtime_path') . date('Ymd') . '.log';
         $str = (is_string($data) ? $data : (is_array($data) || is_object($data)) ? print_r($data, true) : var_export($data, true)) . PHP_EOL;
         $force ? file_put_contents($file, $str) : file_put_contents($file, $str, FILE_APPEND);
     }
