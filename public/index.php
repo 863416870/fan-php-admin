@@ -12,6 +12,14 @@
 // [ 应用入口文件 ]
 namespace think;
 
+
+// 定义应用目录
+define('DS', DIRECTORY_SEPARATOR);
+define('APP_PATH', dirname(__FILE__) . DS . 'application' . DS);
+define('WWW_ROOT', dirname(__FILE__) . DS .'public' . DS);
+
+defined('ROOT_PATH') or define('ROOT_PATH', dirname(__FILE__) . DS);
+
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
 //include __DIR__."/../extend/wechat/include.php";

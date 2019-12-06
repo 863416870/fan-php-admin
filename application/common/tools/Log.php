@@ -61,6 +61,7 @@ class Log
 
     private static function commonFooter($debugInfo, $paramsFlag = true){
         $commonFooter = "\n"."[" . date("H:i:s") . "]Stack trace:"."\n";
+        return json_encode($debugInfo);
         foreach($debugInfo as $key => $val){
             if($key == 0){
                 continue;
