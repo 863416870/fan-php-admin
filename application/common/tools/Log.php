@@ -3,6 +3,7 @@
  * Log日志类
  */
 namespace app\common\tools;
+use think\facade\Request;
 
 class Log {
     public static function getLogId(){
@@ -34,7 +35,7 @@ class Log {
         if (empty($content)) return false;
         static $arrConfig = array();
         if (empty($arrConfig)){
-            $arrPath  = array(MODULE_NAME, CONTROLLER_NAME, ACTION_NAME);
+            $arrPath  = array(Request::module(), Request::controller(), Request::controller());
             $arrConfig['root_path'] = './Runtime/Logs/';
             $arrConfig['sub_dir']   = implode('/', $arrPath);
             $arrConfig['file_name'] = '/' . date('Ymd') . '.log';
