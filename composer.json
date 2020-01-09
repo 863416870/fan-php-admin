@@ -19,10 +19,11 @@
         "php": ">=5.6.0",
         "topthink/framework": "5.1.*",
         "topthink/think-migration": "2.*",
-        "aliyuncs/oss-sdk-php": "^2.3",
         "qiniu/php-sdk": "^7.2",
         "firebase/php-jwt": "^5.0",
-        "aliyun/aliyun-mns-php-sdk": ">=1.0.0"
+        "aliyun/aliyun-mns-php-sdk": ">=1.0.0",
+        "fanguojie/f-think-admin": "^0.28.0",
+        "aliyuncs/oss-sdk-php": "^2.3"
     },
     "autoload": {
         "psr-4": {

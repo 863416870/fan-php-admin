@@ -80,14 +80,6 @@ class ConnMgr
         $confMap = array(
             //默认业务redis，线上线下隔离
             "default" => array(
-                "host" => "47.93.119.95",
-                "port" => "6379",
-                "connect_timeout" => "1.5",
-                "connect_retry_delay" => '100', //毫秒
-                "connect_retry_times" => 3,
-                "password" => '8a42f6a4f0656076bacaa4771179f7d6',
-            ),
-            "new" => array(
                 "host" => "127.0.0.1",
                 "port" => "6379",
                 "connect_timeout" => "1.5",

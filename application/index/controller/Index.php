@@ -11,6 +11,8 @@ use app\common\util\ExceptionUtil;
 use Finecho\Logistics\Logistics;
 use think\facade\Hook;
 use think\Controller;
+use library\tools\Csv;
+use library\tools\Reflex as FReflex;
 
 class Index extends Controller
 {
@@ -109,7 +111,16 @@ class Index extends Controller
         $list = Data::arr2tree($list);
         return writeJson(200,$list);
     }
-
+    /**
+     * 生成树状
+     * @return \think\response\Json
+     */
+    public function arrTree1(){
+        $list = $this->list;
+        $list = json_decode($list, true);
+        $list = Data::arr2tree($list);
+        return writeJson(200,$list);
+    }
     /**
      * 父找子
      * @return \think\response\Json
@@ -161,4 +172,36 @@ class Index extends Controller
         $info = Express::query('shentong','773001885407885');
         return writeJson(200,$info);
     }
+
+    /**
+     * csv 测试
+     * @return \think\response\Json
+     */
+    public function csv(){
+        Csv::header("1.xls",["ss",'ss']);
+        $array2D = array('first'=>array('title'=>'1111','date'=>'2222'),'second'=>array('title'=>'1111','date'=>'2222'),'third'=>array('title'=>'2222','date'=>'3333'));
+        Csv::body($array2D,["first.title"]);
+
+    }
+
+    /**
+     * 查询指定bid的图书
+     * @route('v1/book/:bid','get')
+     * @param Request $bid
+     * @param('bid','bid的图书','require')
+     * @return mixed
+     */
+    public function reflex(){
+        $reflex =  new FReflex($this);
+        $actionReflex = $reflex->setMethod("reflex");
+        $route = $actionReflex->get('route',['rule','method']);
+        $param = $actionReflex->get('param',['a','b','c']);
+        return writeJson(200,$param);
+    }
+
+
+
+
+
+
 }
